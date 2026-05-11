@@ -42,6 +42,7 @@
                     <a href="#powerquery" class="nav-link">Power Query</a>
                     <a href="#macros" class="nav-link">Macros & VBA</a>
                     <a href="#simulator" class="nav-link">Simulateur (DÉFI)</a>
+                    <a href="#quiz" class="nav-link">Quiz Final</a>
                     <a href="#raccourcis" class="nav-link">Raccourcis</a>
                 </div>
             </nav>
@@ -183,8 +184,22 @@
                 </div>
             </section>
 
+            <section id="quiz" class="card">
+                <h2>11. Quiz Final : Validez vos acquis</h2>
+                <div id="quiz-container">
+                    <div id="question-box">
+                        <p id="quiz-question" style="font-weight: bold; color: white;"></p>
+                        <div id="quiz-options"></div>
+                    </div>
+                    <div id="quiz-footer" style="margin-top: 1rem; display: none;">
+                        <p id="quiz-score" style="color: var(--excel-neon); font-family: 'Orbitron', sans-serif;"></p>
+                        <button onclick="resetQuiz()" class="btn-primary" style="margin-top: 1rem;">Recommencer</button>
+                    </div>
+                </div>
+            </section>
+
             <section id="raccourcis" class="card">
-                <h2>11. Raccourcis Indispensables</h2>
+                <h2>12. Raccourcis Indispensables</h2>
                 <div class="shortcuts-grid">
                     <div class="shortcut-item"><span>Ctrl + C / V</span><span>Copier / Coller</span></div>
                     <div class="shortcut-item"><span>Ctrl + Z</span><span>Annuler l'action</span></div>

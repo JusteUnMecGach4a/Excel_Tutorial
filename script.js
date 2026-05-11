@@ -99,4 +99,91 @@ document.addEventListener('DOMContentLoaded', () => {
         input.value = "";
         resultMsg.style.display = 'none';
     }
+
+    // Quiz Logic
+    const quizQuestions = [
+        {
+            q: "Quelle touche permet de figer une cellule (référence absolue $) ?",
+            o: ["F2", "F4", "F12", "Echap"],
+            a: 1
+        },
+        {
+            q: "Quel format de fichier est nécessaire pour sauvegarder une Macro ?",
+            o: [".xlsx", ".csv", ".xlsm", ".txt"],
+            a: 2
+        },
+        {
+            q: "Quel outil permet de nettoyer et transformer des données sans code ?",
+            o: ["TCD", "Power Query", "Solver", "RechercheV"],
+            a: 1
+        },
+        {
+            q: "Laquelle de ces fonctions est la plus flexible pour les recherches ?",
+            o: ["RECHERCHEV", "RECHERCHEH", "RECHERCHEX", "SOMME.SI"],
+            a: 2
+        }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+
+    function loadQuestion() {
+        const qData = quizQuestions[currentQ];
+        const qText = document.getElementById('quiz-question');
+        const optionsBox = document.getElementById('quiz-options');
+        
+        if (!qText) return;
+
+        qText.textContent = `Question ${currentQ + 1} : ${qData.q}`;
+        optionsBox.innerHTML = '';
+        
+        qData.o.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-btn';
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(index, btn);
+            optionsBox.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(idx, btn) {
+        const correct = quizQuestions[currentQ].a;
+        const btns = document.querySelectorAll('.quiz-btn');
+        
+        btns.forEach(b => b.disabled = true);
+        
+        if (idx === correct) {
+            btn.classList.add('correct');
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            btns[correct].classList.add('correct');
+        }
+
+        setTimeout(() => {
+            currentQ++;
+            if (currentQ < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }, 1500);
+    }
+
+    function showFinalScore() {
+        document.getElementById('question-box').style.display = 'none';
+        const footer = document.getElementById('quiz-footer');
+        footer.style.display = 'block';
+        document.getElementById('quiz-score').textContent = `Score final : ${score} / ${quizQuestions.length}`;
+    }
+
+    window.resetQuiz = () => {
+        currentQ = 0;
+        score = 0;
+        document.getElementById('question-box').style.display = 'block';
+        document.getElementById('quiz-footer').style.display = 'none';
+        loadQuestion();
+    };
+
+    loadQuestion();
 });
