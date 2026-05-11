@@ -39,6 +39,7 @@
                     <a href="#vlookup" class="nav-link">RechercheV / X</a>
                     <a href="#mefc" class="nav-link">Mise en forme Cond.</a>
                     <a href="#tcd" class="nav-link">Tableaux Croisés</a>
+                    <a href="#powerquery" class="nav-link">Power Query</a>
                     <a href="#macros" class="nav-link">Macros & VBA</a>
                     <a href="#simulator" class="nav-link">Simulateur (DÉFI)</a>
                     <a href="#raccourcis" class="nav-link">Raccourcis</a>
@@ -54,57 +55,66 @@
             </section>
 
             <section id="interface" class="card">
-                <h2>1. L'Interface</h2>
-                <p>Comprendre l'espace de travail est la première étape cruciale.</p>
+                <h2>1. L'Interface Avancée</h2>
+                <p>Au-delà du simple ruban, Excel cache des outils de productivité puissants.</p>
                 <ul>
-                    <li><strong>Le Ruban :</strong> Regroupe tous les outils (Accueil, Insertion, Formules).</li>
-                    <li><strong>Barre de Formule :</strong> C'est ici que la magie opère. Vous y tapez vos équations.</li>
-                    <li><strong>La Grille :</strong> Composée de colonnes (lettres) et de lignes (chiffres). L'intersection est une <strong>cellule</strong> (ex: A1).</li>
+                    <li><strong>Le Ruban & Raccourcis :</strong> Personnalisez-le en faisant un clic droit. Utilisez <strong>ALT</strong> pour afficher les lettres de raccourci sur chaque onglet.</li>
+                    <li><strong>Barre d'Accès Rapide :</strong> Située tout en haut, elle permet d'épingler vos outils favoris (Enregistrer, Annuler, mais aussi "Aperçu avant impression").</li>
+                    <li><strong>Gestionnaire de Noms :</strong> (Onglet Formules) Permet de nommer une cellule ou une plage (ex: "TVA"). Au lieu de taper <code>=A1*0,20</code>, vous taperez <code>=Prix*TVA</code>.</li>
+                    <li><strong>Barre d'État :</strong> En bas à droite, elle calcule instantanément la moyenne, le nb et la somme des cellules sélectionnées sans aucune formule.</li>
                 </ul>
             </section>
 
             <section id="cellules" class="card">
-                <h2>2. Cellules & Saisie</h2>
-                <p>Excel traite différents types de données :</p>
-                <ul>
-                    <li><strong>Texte :</strong> Alignés à gauche par défaut.</li>
-                    <li><strong>Nombres :</strong> Alignés à droite. Attention au format (Monétaire, Pourcentage).</li>
-                    <li><strong>Dates :</strong> Excel les traite comme des nombres séquentiels pour permettre les calculs.</li>
-                </ul>
-                <div class="formula-box">Astuce : Appuyez sur F2 pour modifier une cellule rapidement.</div>
+                <h2>2. Maîtrise des Données & Formats</h2>
+                <p>Excel ne "voit" pas ce que vous voyez. Il stocke des valeurs brutes et applique un masque de formatage.</p>
+                <h3>A. Formats de Nombres Personnalisés</h3>
+                <p>Utilisez le code <code>[Rouge][<0]-0,00;0,00</code> pour afficher les nombres négatifs en rouge automatiquement.</p>
+                <h3>B. Validation de Données</h3>
+                <p>Empêchez les erreurs de saisie ! Allez dans <strong>Données > Validation des données</strong> pour créer des listes déroulantes ou restreindre la saisie à des dates précises.</p>
+                <h3>C. Protection & Verrouillage</h3>
+                <p>Par défaut, toutes les cellules sont "verrouillées", mais cela n'est effectif que si vous protégez la feuille (Révision > Protéger). Décochez "Verrouillée" dans le format de cellule pour les zones que l'utilisateur doit pouvoir modifier.</p>
             </section>
 
             <section id="formules" class="card">
-                <h2>3. Formules de Base</h2>
-                <p>Toute formule commence par le signe <strong>=</strong>.</p>
-                <div class="formula-box">=SOMME(A1:A10)</div>
-                <p>Additionne toutes les valeurs de la plage sélectionnée.</p>
-                <div class="formula-box">=MOYENNE(B1:B5)</div>
-                <p>Calcule la moyenne arithmétique.</p>
+                <h2>3. Formules & Calculs Statistiques</h2>
+                <p>Les formules avancées permettent d'analyser des données sous condition.</p>
+                <div class="formula-box">=SOMME.SI.ENS(Plage_Somme; Plage_Critère1; Critère1; ...)</div>
+                <p>Additionne les valeurs si plusieurs conditions sont remplies (ex: Ventes de "Jean" en "Janvier").</p>
+                <div class="formula-box">=SIERREUR(Ma_Formule; "Texte si erreur")</div>
+                <p>Essentiel pour nettoyer vos tableaux et éviter les vilains <code>#DIV/0!</code> ou <code>#N/A</code>.</p>
+                <div class="formula-box">=NB.SI(A1:A100; ">10")</div>
+                <p>Compte le nombre de cellules qui répondent à un critère spécifique.</p>
             </section>
 
             <section id="references" class="card">
-                <h2>4. Références $ (Le Secret)</h2>
-                <p>Quand vous étirez une formule, Excel adapte les cellules. Pour "bloquer" une cellule, utilisez le symbole <strong>$</strong>.</p>
+                <h2>4. Références Dynamiques & Tableaux</h2>
+                <p>Le secret des pros : <strong>Ctrl + L (ou Ctrl + T)</strong>. Transformez vos données en "Tableau structuré".</p>
                 <ul>
-                    <li><strong>A1 :</strong> Relatif (change partout).</li>
-                    <li><strong>$A$1 :</strong> Absolu (ne change jamais).</li>
-                    <li><strong>A$1 :</strong> Ligne bloquée uniquement.</li>
+                    <li><strong>Recopie automatique :</strong> Les formules s'étendent toutes seules aux nouvelles lignes.</li>
+                    <li><strong>Noms structurés :</strong> Au lieu de <code>=A2*B2</code>, vous aurez <code>=[@Prix]*[@Quantité]</code>. C'est bien plus lisible !</li>
+                    <li><strong>Ligne de totaux :</strong> Activez-la en un clic pour avoir des calculs instantanés en bas de tableau.</li>
                 </ul>
             </section>
 
             <section id="logique" class="card">
-                <h2>5. Fonctions Logiques</h2>
-                <p>La fonction SI permet de créer des conditions.</p>
-                <div class="formula-box">=SI(Moyenne>=10; "Admis"; "Recalé")</div>
-                <p>Si la condition est vraie, Excel affiche le premier texte, sinon le second.</p>
+                <h2>5. Logique Conditionnelle Complexe</h2>
+                <p>Combinez le SI avec les fonctions <strong>ET</strong> et <strong>OU</strong> pour des tests multicritères.</p>
+                <div class="formula-box">=SI(ET(A1>=10; B1="Oui"); "Validé"; "En attente")</div>
+                <p>Le résultat est "Validé" uniquement si les DEUX conditions sont vraies.</p>
+                <div class="formula-box">=SI(OU(A1<0; A1>100); "Alerte"; "OK")</div>
+                <p>Affiche "Alerte" si la valeur est en dehors des bornes [0-100].</p>
             </section>
 
             <section id="vlookup" class="card">
-                <h2>6. Recherche de Données</h2>
-                <p>Chercher une valeur dans un grand tableau.</p>
-                <div class="formula-box">=RECHERCHEV(Valeur_Cherchée; Table_Matrice; Index_Col; [Valeur_Proche])</div>
-                <p>Pro-tip : Utilisez <strong>RECHERCHEX</strong> si vous avez une version récente (Office 365), elle est bien plus puissante et simple !</p>
+                <h2>6. Recherche de Données (Le Trio Gagnant)</h2>
+                <p>Il existe trois façons majeures de croiser des données :</p>
+                <ul>
+                    <li><strong>RECHERCHEV :</strong> La base. Cherche à droite uniquement.</li>
+                    <li><strong>INDEX + EQUIV :</strong> L'alternative historique. Plus flexible (cherche à gauche) et plus rapide sur de très gros fichiers.</li>
+                    <li><strong>RECHERCHEX :</strong> Le nouveau standard (Office 365). Gère les erreurs, cherche vers le haut/bas/gauche et ne casse pas si vous insérez une colonne.</li>
+                </ul>
+                <div class="formula-box">=INDEX(Plage_Retour; EQUIV(Valeur; Plage_Recherche; 0))</div>
             </section>
 
             <section id="mefc" class="card">
@@ -118,34 +128,41 @@
             </section>
 
             <section id="tcd" class="card">
-                <h2>8. Tableaux Croisés Dynamiques</h2>
-                <p>C'est l'outil ultime d'analyse. Il permet de synthétiser des milliers de lignes en quelques clics.</p>
-                <ol>
-                    <li>Sélectionnez vos données.</li>
-                    <li>Insertion > Tableau Croisé Dynamique.</li>
-                    <li>Glissez les champs dans "Colonnes", "Lignes" ou "Valeurs".</li>
-                </ol>
+                <h2>8. Tableaux Croisés Dynamiques (Expert)</h2>
+                <p>Ne vous contentez pas de glisser-déposer. Maîtrisez l'analyse.</p>
+                <ul>
+                    <li><strong>Segments (Slicers) :</strong> Créez des boutons visuels pour filtrer vos TCD en un clic (onglet Analyse du TCD > Insérer un segment).</li>
+                    <li><strong>Paramètres des champs de valeurs :</strong> Changez "Somme" par "Moyenne", "Max" ou même "% du total général" pour une analyse relative.</li>
+                    <li><strong>Champs calculés :</strong> Ajoutez vos propres formules à l'intérieur du TCD sans modifier vos données sources.</li>
+                    <li><strong>Chronologie :</strong> Un segment spécial pour filtrer par périodes (années, mois, jours) de manière ultra-fluide.</li>
+                </ul>
+            </section>
+
+            <section id="powerquery" class="card">
+                <h2>9. Power Query : L'arme Secrète</h2>
+                <p>Oubliez les macros complexes pour nettoyer vos données. Power Query (Données > Récupérer et transformer) permet d'automatiser le nettoyage.</p>
+                <ul>
+                    <li><strong>Dépivoter les colonnes :</strong> Transformez un tableau croisé en une liste plate en un clic.</li>
+                    <li><strong>Fusionner des requêtes :</strong> L'équivalent surpuissant du RECHERCHEV pour lier deux tables.</li>
+                    <li><strong>Type de données :</strong> Forcez le formatage des colonnes dès l'importation pour éviter les erreurs de calcul plus tard.</li>
+                </ul>
             </section>
 
             <section id="macros" class="card">
-                <h2>9. Macros & Automatisation</h2>
-                <p>Les macros permettent d'automatiser des tâches répétitives en enregistrant vos actions ou en écrivant du code.</p>
+                <h2>10. Macros & VBA Professionnel</h2>
+                <p>L'automatisation réelle passe par la compréhension du modèle d'objet Excel.</p>
                 
-                <h3>A. Activer l'onglet Développeur</h3>
-                <p>Par défaut, l'onglet est caché. Allez dans <strong>Fichier > Options > Personnaliser le ruban</strong> et cochez <strong>Développeur</strong>.</p>
-                
-                <h3>B. L'Enregistreur de Macros</h3>
-                <p>C'est le moyen le plus simple : Excel "filme" ce que vous faites et le traduit en code. Idéal pour les débutants.</p>
-                
-                <h3>C. Introduction au VBA</h3>
-                <p>Le VBA (Visual Basic for Applications) est le langage de programmation d'Excel.</p>
+                <h3>A. Le Modèle d'Objet</h3>
+                <p>Excel est une hiérarchie : <code>Application > Workbook > Worksheet > Range</code>.</p>
                 <div class="formula-box">
-                    Sub Bonjour()<br>
-                    &nbsp;&nbsp;MsgBox "Bienvenue dans le monde de l'automatisation !"<br>
-                    End Sub
+                    Worksheets("Fiche1").Range("A1").Value = "Terminé"
                 </div>
                 
-                <p style="color: #e74c3c; font-weight: bold;">⚠️ IMPORTANT : Enregistrez toujours votre classeur au format .xlsm (Classeur prenant en charge les macros) sinon votre code sera perdu !</p>
+                <h3>B. Les Événements</h3>
+                <p>Vous pouvez déclencher du code automatiquement lors d'une action de l'utilisateur (ex: Ouverture du fichier, changement d'une cellule spécifique).</p>
+                
+                <h3>C. Les Variables</h3>
+                <p>Déclarez toujours vos variables pour gagner en vitesse et éviter les bugs : <code>Dim maValeur As Integer</code>.</p>
             </section>
 
             <section id="simulator" class="card">
